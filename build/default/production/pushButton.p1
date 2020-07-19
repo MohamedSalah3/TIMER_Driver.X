@@ -1,0 +1,197 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"23 pushButton.c
+[; ;pushButton.c: 23: En_buttonStatus_t pushButtonGetStatus(En_buttonId_t en_butotn_id)
+[c E60 0 1 2 3 .. ]
+[n E60 En_buttonId_t BTN_0 BTN_1 BTN_2 BTN_3  ]
+[c E66 0 1 .. ]
+[n E66 En_buttonStatus_t Released Pressed  ]
+"70 ./DIO.h
+[; ;./DIO.h: 70: ERROR_STATUS DIO_Read (uint8_t GPIO,uint8_t pins, uint8_t *data);
+[v _DIO_Read `(uc ~T0 @X0 0 ef3`uc`uc`*uc ]
+"23 pushButton.c
+[; ;pushButton.c: 23: En_buttonStatus_t pushButtonGetStatus(En_buttonId_t en_butotn_id)
+[v _pushButtonGetStatus `(E66 ~T0 @X0 1 ef1`E60 ]
+"24
+[; ;pushButton.c: 24: {
+{
+[e :U _pushButtonGetStatus ]
+"23
+[; ;pushButton.c: 23: En_buttonStatus_t pushButtonGetStatus(En_buttonId_t en_butotn_id)
+[v _en_butotn_id `E60 ~T0 @X0 1 r1 ]
+"24
+[; ;pushButton.c: 24: {
+[f ]
+"25
+[; ;pushButton.c: 25:  static uint8_t u8_Button_press[3];
+[v F78 `uc ~T0 @X0 -> 3 `i s u8_Button_press ]
+"26
+[; ;pushButton.c: 26: static uint8_t u8_S_button_status[3];
+[v F79 `uc ~T0 @X0 -> 3 `i s u8_S_button_status ]
+"27
+[; ;pushButton.c: 27: switch(en_butotn_id)
+[e $U 4  ]
+"28
+[; ;pushButton.c: 28: {
+{
+"29
+[; ;pushButton.c: 29: case BTN_0:
+[e :U 5 ]
+"30
+[; ;pushButton.c: 30: {
+{
+"31
+[; ;pushButton.c: 31:     DIO_Read(2,0x10,&(u8_Button_press[0]));
+[e ( _DIO_Read (3 , , -> -> 2 `i `uc -> -> 16 `i `uc &U *U + &U F78 * -> -> -> 0 `i `ui `ux -> -> # *U &U F78 `ui `ux ]
+"32
+[; ;pushButton.c: 32: if( u8_Button_press[0]== Pressed)
+[e $ ! == -> *U + &U F78 * -> -> -> 0 `i `ui `ux -> -> # *U &U F78 `ui `ux `i -> . `E66 1 `i 6  ]
+"33
+[; ;pushButton.c: 33: {
+{
+"34
+[; ;pushButton.c: 34:  (u8_S_button_status[0])++;
+[e ++ *U + &U F79 * -> -> -> 0 `i `ui `ux -> -> # *U &U F79 `ui `ux -> -> 1 `i `uc ]
+"38
+[; ;pushButton.c: 38:  if( (u8_S_button_status[0]) > 50)
+[e $ ! > -> *U + &U F79 * -> -> -> 0 `i `ui `ux -> -> # *U &U F79 `ui `ux `i -> 50 `i 7  ]
+"39
+[; ;pushButton.c: 39:  return Pressed;
+[e ) . `E66 1 ]
+[e $UE 2  ]
+[e $U 8  ]
+"40
+[; ;pushButton.c: 40:  else {return Released;}
+[e :U 7 ]
+{
+[e ) . `E66 0 ]
+[e $UE 2  ]
+}
+[e :U 8 ]
+"41
+[; ;pushButton.c: 41: }else{return Released;}
+}
+[e $U 9  ]
+[e :U 6 ]
+{
+[e ) . `E66 0 ]
+[e $UE 2  ]
+}
+[e :U 9 ]
+"42
+[; ;pushButton.c: 42: break;
+[e $U 3  ]
+"43
+[; ;pushButton.c: 43: }
+}
+"44
+[; ;pushButton.c: 44: case BTN_1:
+[e :U 10 ]
+"45
+[; ;pushButton.c: 45: {
+{
+"46
+[; ;pushButton.c: 46:     DIO_Read(1,0x04,&(u8_Button_press[1]));
+[e ( _DIO_Read (3 , , -> -> 1 `i `uc -> -> 4 `i `uc &U *U + &U F78 * -> -> -> 1 `i `ui `ux -> -> # *U &U F78 `ui `ux ]
+"47
+[; ;pushButton.c: 47: if( u8_Button_press[1] == Pressed)
+[e $ ! == -> *U + &U F78 * -> -> -> 1 `i `ui `ux -> -> # *U &U F78 `ui `ux `i -> . `E66 1 `i 11  ]
+"48
+[; ;pushButton.c: 48: {
+{
+"49
+[; ;pushButton.c: 49:  (u8_S_button_status[0])++;
+[e ++ *U + &U F79 * -> -> -> 0 `i `ui `ux -> -> # *U &U F79 `ui `ux -> -> 1 `i `uc ]
+"53
+[; ;pushButton.c: 53:  if( (u8_S_button_status[0]) > 50)
+[e $ ! > -> *U + &U F79 * -> -> -> 0 `i `ui `ux -> -> # *U &U F79 `ui `ux `i -> 50 `i 12  ]
+"54
+[; ;pushButton.c: 54: return Pressed;
+[e ) . `E66 1 ]
+[e $UE 2  ]
+[e $U 13  ]
+"55
+[; ;pushButton.c: 55:  else {return Released;}
+[e :U 12 ]
+{
+[e ) . `E66 0 ]
+[e $UE 2  ]
+}
+[e :U 13 ]
+"56
+[; ;pushButton.c: 56: }else{return Released;}
+}
+[e $U 14  ]
+[e :U 11 ]
+{
+[e ) . `E66 0 ]
+[e $UE 2  ]
+}
+[e :U 14 ]
+"57
+[; ;pushButton.c: 57: break;
+[e $U 3  ]
+"58
+[; ;pushButton.c: 58: }
+}
+"59
+[; ;pushButton.c: 59: case BTN_2:
+[e :U 15 ]
+"60
+[; ;pushButton.c: 60: {
+{
+"61
+[; ;pushButton.c: 61:     DIO_Read(0,0x04,&(u8_Button_press[2]));
+[e ( _DIO_Read (3 , , -> -> 0 `i `uc -> -> 4 `i `uc &U *U + &U F78 * -> -> -> 2 `i `ui `ux -> -> # *U &U F78 `ui `ux ]
+"62
+[; ;pushButton.c: 62: if((u8_Button_press[2])== Pressed)
+[e $ ! == -> *U + &U F78 * -> -> -> 2 `i `ui `ux -> -> # *U &U F78 `ui `ux `i -> . `E66 1 `i 16  ]
+"63
+[; ;pushButton.c: 63: { (u8_S_button_status[1])++;
+{
+[e ++ *U + &U F79 * -> -> -> 1 `i `ui `ux -> -> # *U &U F79 `ui `ux -> -> 1 `i `uc ]
+"67
+[; ;pushButton.c: 67:  if( (u8_S_button_status[1]) > 20)
+[e $ ! > -> *U + &U F79 * -> -> -> 1 `i `ui `ux -> -> # *U &U F79 `ui `ux `i -> 20 `i 17  ]
+"68
+[; ;pushButton.c: 68:  return Pressed;
+[e ) . `E66 1 ]
+[e $UE 2  ]
+[e $U 18  ]
+"69
+[; ;pushButton.c: 69: else {return Released;}
+[e :U 17 ]
+{
+[e ) . `E66 0 ]
+[e $UE 2  ]
+}
+[e :U 18 ]
+"70
+[; ;pushButton.c: 70: }else{return Released;}
+}
+[e $U 19  ]
+[e :U 16 ]
+{
+[e ) . `E66 0 ]
+[e $UE 2  ]
+}
+[e :U 19 ]
+"71
+[; ;pushButton.c: 71: break;
+[e $U 3  ]
+"72
+[; ;pushButton.c: 72: }
+}
+"76
+[; ;pushButton.c: 76:  }
+}
+[e $U 3  ]
+[e :U 4 ]
+[e [\ -> _en_butotn_id `ui , $ -> . `E60 0 `ui 5
+ , $ -> . `E60 1 `ui 10
+ , $ -> . `E60 2 `ui 15
+ 3 ]
+[e :U 3 ]
+"79
+[; ;pushButton.c: 79: }
+[e :UE 2 ]
+}

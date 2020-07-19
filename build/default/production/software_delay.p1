@@ -1,0 +1,119 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"10 software_delay.c
+[; ;software_delay.c: 10: void SwDelay_ms(uint32_t n)
+[v _SwDelay_ms `(v ~T0 @X0 1 ef1`ul ]
+"11
+[; ;software_delay.c: 11: {
+{
+[e :U _SwDelay_ms ]
+"10
+[; ;software_delay.c: 10: void SwDelay_ms(uint32_t n)
+[v _n `ul ~T0 @X0 1 r1 ]
+"11
+[; ;software_delay.c: 11: {
+[f ]
+"12
+[; ;software_delay.c: 12:  uint8_t counter_256;
+[v _counter_256 `uc ~T0 @X0 1 a ]
+"13
+[; ;software_delay.c: 13:  uint8_t counter_21;
+[v _counter_21 `uc ~T0 @X0 1 a ]
+"14
+[; ;software_delay.c: 14:  while (n)
+[e $U 2  ]
+[e :U 3 ]
+"15
+[; ;software_delay.c: 15:  {
+{
+"17
+[; ;software_delay.c: 17:   counter_21 = 21;
+[e = _counter_21 -> -> 21 `i `uc ]
+"18
+[; ;software_delay.c: 18:   while (counter_21)
+[e $U 5  ]
+[e :U 6 ]
+"19
+[; ;software_delay.c: 19:   {
+{
+"21
+[; ;software_delay.c: 21:    counter_256 = 255;
+[e = _counter_256 -> -> 255 `i `uc ]
+"22
+[; ;software_delay.c: 22:    while (counter_256)
+[e $U 8  ]
+[e :U 9 ]
+"23
+[; ;software_delay.c: 23:    {
+{
+"24
+[; ;software_delay.c: 24:     counter_256--;
+[e -- _counter_256 -> -> 1 `i `uc ]
+"25
+[; ;software_delay.c: 25:    }
+}
+[e :U 8 ]
+"22
+[; ;software_delay.c: 22:    while (counter_256)
+[e $ != -> _counter_256 `i -> 0 `i 9  ]
+[e :U 10 ]
+"26
+[; ;software_delay.c: 26:    counter_21--;
+[e -- _counter_21 -> -> 1 `i `uc ]
+"27
+[; ;software_delay.c: 27:   }
+}
+[e :U 5 ]
+"18
+[; ;software_delay.c: 18:   while (counter_21)
+[e $ != -> _counter_21 `i -> 0 `i 6  ]
+[e :U 7 ]
+"28
+[; ;software_delay.c: 28:   n--;
+[e -- _n -> -> -> 1 `i `l `ul ]
+"29
+[; ;software_delay.c: 29:  }
+}
+[e :U 2 ]
+"14
+[; ;software_delay.c: 14:  while (n)
+[e $ != _n -> -> -> 0 `i `l `ul 3  ]
+[e :U 4 ]
+"30
+[; ;software_delay.c: 30: }
+[e :UE 1 ]
+}
+"37
+[; ;software_delay.c: 37: void SwDelay_us(uint32_t n)
+[v _SwDelay_us `(v ~T0 @X0 1 ef1`ul ]
+"38
+[; ;software_delay.c: 38: {
+{
+[e :U _SwDelay_us ]
+"37
+[; ;software_delay.c: 37: void SwDelay_us(uint32_t n)
+[v _n `ul ~T0 @X0 1 r1 ]
+"38
+[; ;software_delay.c: 38: {
+[f ]
+"39
+[; ;software_delay.c: 39:  while (n)
+[e $U 12  ]
+[e :U 13 ]
+"40
+[; ;software_delay.c: 40:  {
+{
+"41
+[; ;software_delay.c: 41:   n--;
+[e -- _n -> -> -> 1 `i `l `ul ]
+"42
+[; ;software_delay.c: 42:  }
+}
+[e :U 12 ]
+"39
+[; ;software_delay.c: 39:  while (n)
+[e $ != _n -> -> -> 0 `i `l `ul 13  ]
+[e :U 14 ]
+"43
+[; ;software_delay.c: 43: }
+[e :UE 11 ]
+}

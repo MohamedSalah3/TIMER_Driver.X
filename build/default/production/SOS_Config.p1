@@ -1,0 +1,16 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"14 ./sosConfig.h
+[; ;./sosConfig.h: 14: typedef struct TMU_ConfigType{
+[s S2 `uc 1 `uc 1 ]
+[n S2 TMU_ConfigType u8_resolution u8_Timer_channel ]
+"10 SOS_Config.c
+[; ;SOS_Config.c: 10: const TMU_ConfigType TMU_Configuration={
+[v _TMU_Configuration `CS2 ~T0 @X0 1 e ]
+[i _TMU_Configuration
+:U ..
+:U ..
+-> -> 1 `i `uc
+-> -> 2 `i `uc
+..
+..
+]

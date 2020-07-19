@@ -1,0 +1,16 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[v F69 `(v ~T0 @X0 0 tf ]
+"16 ./I2C_Config.h
+[; ;./I2C_Config.h: 16: {
+[s S2 `ul 1 `*F69 1 ]
+[n S2 . comm_freq ActionDoneCbkPtr ]
+"3 I2C_Config.c
+[; ;I2C_Config.c: 3: I2C_ConfigType I2c_Configuration_Eeprom = {1000,} ;
+[v _I2c_Configuration_Eeprom `S2 ~T0 @X0 1 e ]
+[i _I2c_Configuration_Eeprom
+:U ..
+:U ..
+-> -> -> 1000 `i `l `ul
+..
+..
+]

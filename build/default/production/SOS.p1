@@ -1,0 +1,479 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"58 ./SOS.h
+[; ;./SOS.h: 58:  { uint8_t u8Started;
+[s S4 `uc 1 `uc 1 ]
+[n S4 start_status u8Started function_Index ]
+[v F134 `(v ~T0 @X0 0 tf ]
+"63
+[; ;./SOS.h: 63:  {
+[s S5 `*F134 1 `uc 1 `ui 1 `uc 1 `ui 1 ]
+[n S5 Buffer_Request Fuction_consumer u8_flag_is_stopped u16_time_delay preodic u16_Counter ]
+"14 ./sosConfig.h
+[; ;./sosConfig.h: 14: typedef struct TMU_ConfigType{
+[s S3 `uc 1 `uc 1 ]
+[n S3 TMU_ConfigType u8_resolution u8_Timer_channel ]
+[v F82 `(v ~T0 @X0 0 tf ]
+"21 ./Timer_Config.h
+[; ;./Timer_Config.h: 21: {
+[s S2 `uc 1 `uc 1 `uc 1 `uc 1 `*F82 1 ]
+[n S2 Timer_cfg_s Timer_CH_NO Timer_Mode Timer_Polling_Or_Interrupt Timer_Prescaler Timer_Cbk_ptr ]
+"28 ./Timer.h
+[; ;./Timer.h: 28: ERROR_STATUS Timer_Init(Timer_cfg_s* Timer_cfg);
+[v _Timer_Init `(uc ~T0 @X0 0 ef1`*S2 ]
+"122 ./Timer_Config.h
+[; ;./Timer_Config.h: 122: extern Timer_cfg_s Timer_Configuration0;
+[v _Timer_Configuration0 `S2 ~T0 @X0 0 e ]
+"123
+[; ;./Timer_Config.h: 123: extern Timer_cfg_s Timer_Configuration2;
+[v _Timer_Configuration2 `S2 ~T0 @X0 0 e ]
+"42 ./Timer.h
+[; ;./Timer.h: 42: ERROR_STATUS Timer_Start(uint8_t Timer_CH_NO, uint16_t Timer_Count);
+[v _Timer_Start `(uc ~T0 @X0 0 ef2`uc`ui ]
+"125 ./Timer_Config.h
+[; ;./Timer_Config.h: 125: extern Timer_cfg_s Timer_Deinit_Configuration0;
+[v _Timer_Deinit_Configuration0 `S2 ~T0 @X0 0 e ]
+[v F155 `(v ~T0 @X0 0 tf ]
+[v F157 `(v ~T0 @X0 0 tf ]
+"13 SOS.c
+[; ;SOS.c: 13: uint8_t u8_Init_finished=0;
+[v _u8_Init_finished `uc ~T0 @X0 1 e ]
+[i _u8_Init_finished
+-> -> 0 `i `uc
+]
+"15
+[; ;SOS.c: 15: uint8_t u8_Is_Intialized=0;
+[v _u8_Is_Intialized `uc ~T0 @X0 1 e ]
+[i _u8_Is_Intialized
+-> -> 0 `i `uc
+]
+"16
+[; ;SOS.c: 16: start_status start[4];
+[v _start `S4 ~T0 @X0 -> 4 `i e ]
+"17
+[; ;SOS.c: 17: uint8_t u8_FUN_index=0;
+[v _u8_FUN_index `uc ~T0 @X0 1 e ]
+[i _u8_FUN_index
+-> -> 0 `i `uc
+]
+"18
+[; ;SOS.c: 18: Buffer_Request Buffer_Array[4];
+[v _Buffer_Array `S5 ~T0 @X0 -> 4 `i e ]
+"19
+[; ;SOS.c: 19: volatile uint8_t u8Excution_to_be_done=0;
+[v _u8Excution_to_be_done `Vuc ~T0 @X0 1 e ]
+[i _u8Excution_to_be_done
+-> -> 0 `i `uc
+]
+"21
+[; ;SOS.c: 21: uint8_t Start_status[4];
+[v _Start_status `uc ~T0 @X0 -> 4 `i e ]
+"22
+[; ;SOS.c: 22: static uint8_t stu8_increment=0;
+[v _stu8_increment `uc ~T0 @X0 1 s ]
+[i _stu8_increment
+-> -> 0 `i `uc
+]
+"24
+[; ;SOS.c: 24: ERROR_STATUS SOS_Init (const TMU_ConfigType * ConfigPtr )
+[v _SOS_Init `(uc ~T0 @X0 1 ef1`*CS3 ]
+"25
+[; ;SOS.c: 25: {uint8_t u8_channel_ID=ConfigPtr->u8_Timer_channel;
+{
+[e :U _SOS_Init ]
+"24
+[; ;SOS.c: 24: ERROR_STATUS SOS_Init (const TMU_ConfigType * ConfigPtr )
+[v _ConfigPtr `*CS3 ~T0 @X0 1 r1 ]
+"25
+[; ;SOS.c: 25: {uint8_t u8_channel_ID=ConfigPtr->u8_Timer_channel;
+[f ]
+[v _u8_channel_ID `uc ~T0 @X0 1 a ]
+[e = _u8_channel_ID . *U _ConfigPtr 1 ]
+"26
+[; ;SOS.c: 26: uint8_t ret=0;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 0 `i `uc ]
+"30
+[; ;SOS.c: 30: u8_Is_Intialized++;
+[e ++ _u8_Is_Intialized -> -> 1 `i `uc ]
+"32
+[; ;SOS.c: 32: if(ConfigPtr==((void *)0)){ret=32 +16;}
+[e $ ! == _ConfigPtr -> -> -> 0 `i `*v `*CS3 7  ]
+{
+[e = _ret -> + -> 32 `i -> 16 `i `uc ]
+}
+[e :U 7 ]
+"33
+[; ;SOS.c: 33: switch(u8_channel_ID)
+[e $U 9  ]
+"34
+[; ;SOS.c: 34: {
+{
+"35
+[; ;SOS.c: 35:  case 0:
+[e :U 10 ]
+"36
+[; ;SOS.c: 36:    Timer_Init(&Timer_Configuration0);
+[e ( _Timer_Init (1 &U _Timer_Configuration0 ]
+"37
+[; ;SOS.c: 37:     break;
+[e $U 8  ]
+"38
+[; ;SOS.c: 38:  case 2:
+[e :U 11 ]
+"40
+[; ;SOS.c: 40:   Timer_Init(&Timer_Configuration2);
+[e ( _Timer_Init (1 &U _Timer_Configuration2 ]
+"41
+[; ;SOS.c: 41:    break;
+[e $U 8  ]
+"42
+[; ;SOS.c: 42:  default:
+[e :U 12 ]
+"43
+[; ;SOS.c: 43:    ret+=1;
+[e =+ _ret -> -> 1 `i `uc ]
+"44
+[; ;SOS.c: 44:    break;
+[e $U 8  ]
+"45
+[; ;SOS.c: 45: }
+}
+[e $U 8  ]
+[e :U 9 ]
+[e [\ -> _u8_channel_ID `i , $ -> 0 `i 10
+ , $ -> 2 `i 11
+ 12 ]
+[e :U 8 ]
+"51
+[; ;SOS.c: 51: switch(ConfigPtr->u8_resolution)
+[e $U 14  ]
+"52
+[; ;SOS.c: 52: {
+{
+"53
+[; ;SOS.c: 53:  case 1:
+[e :U 15 ]
+"54
+[; ;SOS.c: 54:  {
+{
+"55
+[; ;SOS.c: 55:   switch(u8_channel_ID)
+[e $U 17  ]
+"56
+[; ;SOS.c: 56:   {
+{
+"57
+[; ;SOS.c: 57:    case 0 :
+[e :U 18 ]
+"58
+[; ;SOS.c: 58:   Timer_Start(0,250);
+[e ( _Timer_Start (2 , -> -> 0 `i `uc -> -> 250 `i `ui ]
+"60
+[; ;SOS.c: 60:      break;
+[e $U 16  ]
+"61
+[; ;SOS.c: 61:    case 2 :
+[e :U 19 ]
+"62
+[; ;SOS.c: 62:     Timer_Start(2,250);
+[e ( _Timer_Start (2 , -> -> 2 `i `uc -> -> 250 `i `ui ]
+"63
+[; ;SOS.c: 63:      break;
+[e $U 16  ]
+"64
+[; ;SOS.c: 64:    default:
+[e :U 20 ]
+"65
+[; ;SOS.c: 65:     ret+=1;
+[e =+ _ret -> -> 1 `i `uc ]
+"66
+[; ;SOS.c: 66:      break;
+[e $U 16  ]
+"67
+[; ;SOS.c: 67:   }
+}
+[e $U 16  ]
+[e :U 17 ]
+[e [\ -> _u8_channel_ID `i , $ -> 0 `i 18
+ , $ -> 2 `i 19
+ 20 ]
+[e :U 16 ]
+"68
+[; ;SOS.c: 68:  break;
+[e $U 13  ]
+"69
+[; ;SOS.c: 69:  }
+}
+"73
+[; ;SOS.c: 73:  default:
+[e :U 21 ]
+"74
+[; ;SOS.c: 74:  ret+=1;
+[e =+ _ret -> -> 1 `i `uc ]
+"75
+[; ;SOS.c: 75:  break;
+[e $U 13  ]
+"77
+[; ;SOS.c: 77: }
+}
+[e $U 13  ]
+[e :U 14 ]
+[e [\ -> . *U _ConfigPtr 0 `i , $ -> 1 `i 15
+ 21 ]
+[e :U 13 ]
+"84
+[; ;SOS.c: 84: return ret;
+[e ) _ret ]
+[e $UE 6  ]
+"85
+[; ;SOS.c: 85: }
+[e :UE 6 ]
+}
+"89
+[; ;SOS.c: 89: ERROR_STATUS TMU_DeInit( void )
+[v _TMU_DeInit `(uc ~T0 @X0 1 ef ]
+"90
+[; ;SOS.c: 90: {
+{
+[e :U _TMU_DeInit ]
+[f ]
+"91
+[; ;SOS.c: 91:  uint8_t ret=0;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 0 `i `uc ]
+"96
+[; ;SOS.c: 96: if (u8_Is_Intialized==1)
+[e $ ! == -> _u8_Is_Intialized `i -> 1 `i 23  ]
+"97
+[; ;SOS.c: 97: {
+{
+"98
+[; ;SOS.c: 98:  Timer_Init(&Timer_Deinit_Configuration0);
+[e ( _Timer_Init (1 &U _Timer_Deinit_Configuration0 ]
+"100
+[; ;SOS.c: 100:  u8_Is_Intialized=0;
+[e = _u8_Is_Intialized -> -> 0 `i `uc ]
+"102
+[; ;SOS.c: 102: }else if(u8_Is_Intialized>1){ret+=10;}
+}
+[e $U 24  ]
+[e :U 23 ]
+[e $ ! > -> _u8_Is_Intialized `i -> 1 `i 25  ]
+{
+[e =+ _ret -> -> 10 `i `uc ]
+}
+[e $U 26  ]
+"103
+[; ;SOS.c: 103:  else{
+[e :U 25 ]
+{
+"104
+[; ;SOS.c: 104:  ret=1;
+[e = _ret -> -> 1 `i `uc ]
+"105
+[; ;SOS.c: 105:  }
+}
+[e :U 26 ]
+[e :U 24 ]
+"108
+[; ;SOS.c: 108: return ret;
+[e ) _ret ]
+[e $UE 22  ]
+"109
+[; ;SOS.c: 109: }
+[e :UE 22 ]
+}
+"111
+[; ;SOS.c: 111: ERROR_STATUS SOS_Create_Task(ptr_to_Fun Function_Consumer,uint8_t u8_Preodicity,uint8_t u8_function_index,uint16_t u16_Time_delay)
+[v _SOS_Create_Task `(uc ~T0 @X0 1 ef4`*F155`uc`uc`ui ]
+"112
+[; ;SOS.c: 112: {uint8_t ret=0;
+{
+[e :U _SOS_Create_Task ]
+"111
+[; ;SOS.c: 111: ERROR_STATUS SOS_Create_Task(ptr_to_Fun Function_Consumer,uint8_t u8_Preodicity,uint8_t u8_function_index,uint16_t u16_Time_delay)
+[v _Function_Consumer `*F157 ~T0 @X0 1 r1 ]
+[v _u8_Preodicity `uc ~T0 @X0 1 r2 ]
+[v _u8_function_index `uc ~T0 @X0 1 r3 ]
+[v _u16_Time_delay `ui ~T0 @X0 1 r4 ]
+"112
+[; ;SOS.c: 112: {uint8_t ret=0;
+[f ]
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 0 `i `uc ]
+"118
+[; ;SOS.c: 118:  if(u8_Is_Intialized == 1)
+[e $ ! == -> _u8_Is_Intialized `i -> 1 `i 28  ]
+"119
+[; ;SOS.c: 119:  {
+{
+"122
+[; ;SOS.c: 122:   (Buffer_Array[u8_function_index]).Fuction_consumer=Function_Consumer;
+[e = . *U + &U _Buffer_Array * -> _u8_function_index `ux -> -> # *U &U _Buffer_Array `ui `ux 0 _Function_Consumer ]
+"123
+[; ;SOS.c: 123:   (Buffer_Array[u8_function_index]).preodic=u8_Preodicity;
+[e = . *U + &U _Buffer_Array * -> _u8_function_index `ux -> -> # *U &U _Buffer_Array `ui `ux 3 _u8_Preodicity ]
+"124
+[; ;SOS.c: 124:   (Buffer_Array[u8_function_index]).u16_time_delay=u16_Time_delay;
+[e = . *U + &U _Buffer_Array * -> _u8_function_index `ux -> -> # *U &U _Buffer_Array `ui `ux 2 _u16_Time_delay ]
+"125
+[; ;SOS.c: 125:   (Buffer_Array[u8_function_index]).u8_flag_is_stopped=1;
+[e = . *U + &U _Buffer_Array * -> _u8_function_index `ux -> -> # *U &U _Buffer_Array `ui `ux 1 -> -> 1 `i `uc ]
+"128
+[; ;SOS.c: 128:  }
+}
+[e $U 29  ]
+"129
+[; ;SOS.c: 129:  else if(u8_Is_Intialized>1){ret+=10;}else{
+[e :U 28 ]
+[e $ ! > -> _u8_Is_Intialized `i -> 1 `i 30  ]
+{
+[e =+ _ret -> -> 10 `i `uc ]
+}
+[e $U 31  ]
+[e :U 30 ]
+{
+"130
+[; ;SOS.c: 130:   ret+=12;
+[e =+ _ret -> -> 12 `i `uc ]
+"131
+[; ;SOS.c: 131:  }
+}
+[e :U 31 ]
+[e :U 29 ]
+"133
+[; ;SOS.c: 133:  return ret;
+[e ) _ret ]
+[e $UE 27  ]
+"134
+[; ;SOS.c: 134: }
+[e :UE 27 ]
+}
+"136
+[; ;SOS.c: 136: ERROR_STATUS SOS_Run(void)
+[v _SOS_Run `(uc ~T0 @X0 1 ef ]
+"137
+[; ;SOS.c: 137: { uint8_t ret=0;
+{
+[e :U _SOS_Run ]
+[f ]
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 0 `i `uc ]
+"145
+[; ;SOS.c: 145: if (u8Excution_to_be_done==1)
+[e $ ! == -> _u8Excution_to_be_done `i -> 1 `i 33  ]
+"146
+[; ;SOS.c: 146: { u8Excution_to_be_done=0;
+{
+[e = _u8Excution_to_be_done -> -> 0 `i `uc ]
+"148
+[; ;SOS.c: 148:   for (u8_FUN_index=0;u8_FUN_index<4;u8_FUN_index++)
+{
+[e = _u8_FUN_index -> -> 0 `i `uc ]
+[e $ < -> _u8_FUN_index `i -> 4 `i 34  ]
+[e $U 35  ]
+[e :U 34 ]
+"149
+[; ;SOS.c: 149:    {
+{
+"157
+[; ;SOS.c: 157:   if((Buffer_Array[u8_FUN_index]).u8_flag_is_stopped==0){ret=0;}
+[e $ ! == -> . *U + &U _Buffer_Array * -> _u8_FUN_index `ux -> -> # *U &U _Buffer_Array `ui `ux 1 `i -> 0 `i 37  ]
+{
+[e = _ret -> -> 0 `i `uc ]
+}
+[e $U 38  ]
+"158
+[; ;SOS.c: 158:   else{
+[e :U 37 ]
+{
+"165
+[; ;SOS.c: 165:  ((Buffer_Array[u8_FUN_index]).u16_Counter)++;
+[e ++ . *U + &U _Buffer_Array * -> _u8_FUN_index `ux -> -> # *U &U _Buffer_Array `ui `ux 4 -> -> 1 `i `ui ]
+"170
+[; ;SOS.c: 170:  if(((Buffer_Array[u8_FUN_index]).u16_time_delay) == ((Buffer_Array[u8_FUN_index]).u16_Counter) )
+[e $ ! == . *U + &U _Buffer_Array * -> _u8_FUN_index `ux -> -> # *U &U _Buffer_Array `ui `ux 2 . *U + &U _Buffer_Array * -> _u8_FUN_index `ux -> -> # *U &U _Buffer_Array `ui `ux 4 39  ]
+"171
+[; ;SOS.c: 171:  {
+{
+"172
+[; ;SOS.c: 172:   ((Buffer_Array[u8_FUN_index]).Fuction_consumer)();
+[e ( *U . *U + &U _Buffer_Array * -> _u8_FUN_index `ux -> -> # *U &U _Buffer_Array `ui `ux 0 ..  ]
+"175
+[; ;SOS.c: 175:   (Buffer_Array[u8_FUN_index]).u16_Counter=0;
+[e = . *U + &U _Buffer_Array * -> _u8_FUN_index `ux -> -> # *U &U _Buffer_Array `ui `ux 4 -> -> 0 `i `ui ]
+"177
+[; ;SOS.c: 177:  }
+}
+[e :U 39 ]
+"183
+[; ;SOS.c: 183:  if((Buffer_Array[u8_FUN_index]).preodic==0)
+[e $ ! == -> . *U + &U _Buffer_Array * -> _u8_FUN_index `ux -> -> # *U &U _Buffer_Array `ui `ux 3 `i -> 0 `i 40  ]
+"184
+[; ;SOS.c: 184:  {
+{
+"188
+[; ;SOS.c: 188:   (Buffer_Array[u8_FUN_index]).u8_flag_is_stopped=0;
+[e = . *U + &U _Buffer_Array * -> _u8_FUN_index `ux -> -> # *U &U _Buffer_Array `ui `ux 1 -> -> 0 `i `uc ]
+"189
+[; ;SOS.c: 189:  }
+}
+[e :U 40 ]
+"192
+[; ;SOS.c: 192:   }
+}
+[e :U 38 ]
+"193
+[; ;SOS.c: 193:  }
+}
+[e ++ _u8_FUN_index -> -> 1 `i `uc ]
+[e $ < -> _u8_FUN_index `i -> 4 `i 34  ]
+[e :U 35 ]
+}
+"194
+[; ;SOS.c: 194: }
+}
+[e :U 33 ]
+"195
+[; ;SOS.c: 195: return ret;
+[e ) _ret ]
+[e $UE 32  ]
+"196
+[; ;SOS.c: 196: }
+[e :UE 32 ]
+}
+"199
+[; ;SOS.c: 199: void TMU_Stop_Timer(uint8_t u8_function_index)
+[v _TMU_Stop_Timer `(v ~T0 @X0 1 ef1`uc ]
+"200
+[; ;SOS.c: 200: {
+{
+[e :U _TMU_Stop_Timer ]
+"199
+[; ;SOS.c: 199: void TMU_Stop_Timer(uint8_t u8_function_index)
+[v _u8_function_index `uc ~T0 @X0 1 r1 ]
+"200
+[; ;SOS.c: 200: {
+[f ]
+"205
+[; ;SOS.c: 205:  (Buffer_Array[u8_function_index]).u8_flag_is_stopped=0;
+[e = . *U + &U _Buffer_Array * -> _u8_function_index `ux -> -> # *U &U _Buffer_Array `ui `ux 1 -> -> 0 `i `uc ]
+"206
+[; ;SOS.c: 206: }
+[e :UE 41 ]
+}
+"286
+[; ;SOS.c: 286: void timer_interrupt(void)
+[v _timer_interrupt `(v ~T0 @X0 1 ef ]
+"287
+[; ;SOS.c: 287: {
+{
+[e :U _timer_interrupt ]
+[f ]
+"288
+[; ;SOS.c: 288:  u8Excution_to_be_done =1;
+[e = _u8Excution_to_be_done -> -> 1 `i `uc ]
+"289
+[; ;SOS.c: 289: }
+[e :UE 42 ]
+}

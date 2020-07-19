@@ -1,0 +1,114 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[p mainexit ]
+[v F116 `(v ~T0 @X0 0 tf ]
+"16 ./I2C_Config.h
+[; ;./I2C_Config.h: 16: {
+[s S4 `ul 1 `*F116 1 ]
+[n S4 . comm_freq ActionDoneCbkPtr ]
+"16 ./I2C.h
+[; ;./I2C.h: 16: void I2C_Init(I2C_ConfigType *i2c_info);
+[v _I2C_Init `(v ~T0 @X0 0 ef1`*S4 ]
+"37 ./I2C_Config.h
+[; ;./I2C_Config.h: 37: extern I2C_ConfigType I2c_Configuration_Eeprom ;
+[v _I2c_Configuration_Eeprom `S4 ~T0 @X0 0 e ]
+"27 ./I2C.h
+[; ;./I2C.h: 27: void EEPROM_Write(unsigned int add, unsigned char data);
+[v _EEPROM_Write `(v ~T0 @X0 0 ef2`ui`uc ]
+"16 ./softwareDelay.h
+[; ;./softwareDelay.h: 16: void SwDelay_ms(uint32_t n);
+[v _SwDelay_ms `(v ~T0 @X0 0 ef1`ul ]
+"28 ./I2C.h
+[; ;./I2C.h: 28: uint8_t EEPROM_Read(unsigned int add);
+[v _EEPROM_Read `(uc ~T0 @X0 0 ef1`ui ]
+"20 ./ADC.h
+[; ;./ADC.h: 20: uint16_t ADC_READ(void);
+[v _ADC_READ `(ui ~T0 @X0 0 ef ]
+"11 main.c
+[; ;main.c: 11: static uint8_t ret = 0;
+[v _ret `uc ~T0 @X0 1 s ]
+[i _ret
+-> -> 0 `i `uc
+]
+"12
+[; ;main.c: 12: static uint16_t u16_data = 0;
+[v _u16_data `ui ~T0 @X0 1 s ]
+[i _u16_data
+-> -> 0 `i `ui
+]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"13
+[; ;main.c: 13: int main(void)
+[v _main `(i ~T0 @X0 1 ef ]
+"14
+[; ;main.c: 14: {
+{
+[e :U _main ]
+[f ]
+"19
+[; ;main.c: 19:   I2C_Init(&I2c_Configuration_Eeprom);
+[e ( _I2C_Init (1 &U _I2c_Configuration_Eeprom ]
+"21
+[; ;main.c: 21:   unsigned int Address = 0x0020;
+[v _Address `ui ~T0 @X0 1 a ]
+[e = _Address -> -> 32 `i `ui ]
+"22
+[; ;main.c: 22:   unsigned char Data = 0x04;
+[v _Data `uc ~T0 @X0 1 a ]
+[e = _Data -> -> 4 `i `uc ]
+"23
+[; ;main.c: 23:   EEPROM_Write(Address++, Data++);
+[e ( _EEPROM_Write (2 , ++ _Address -> -> 1 `i `ui ++ _Data -> -> 1 `i `uc ]
+"24
+[; ;main.c: 24:   EEPROM_Write(Address++, Data++);
+[e ( _EEPROM_Write (2 , ++ _Address -> -> 1 `i `ui ++ _Data -> -> 1 `i `uc ]
+"25
+[; ;main.c: 25:   EEPROM_Write(Address, Data);
+[e ( _EEPROM_Write (2 , _Address _Data ]
+"26
+[; ;main.c: 26:   SwDelay_ms(10);
+[e ( _SwDelay_ms (1 -> -> -> 10 `i `l `ul ]
+"27
+[; ;main.c: 27:   Address = 0x0020;
+[e = _Address -> -> 32 `i `ui ]
+"28
+[; ;main.c: 28:   *((reg_type8_t)(0x0088)) = 0x00;
+[e = *U -> -> 136 `i `*Vuc -> -> 0 `i `uc ]
+"29
+[; ;main.c: 29:   *((reg_type8_t)(0x0008)) = EEPROM_Read(Address++);
+[e = *U -> -> 8 `i `*Vuc ( _EEPROM_Read (1 ++ _Address -> -> 1 `i `ui ]
+"30
+[; ;main.c: 30:   SwDelay_ms(1000);
+[e ( _SwDelay_ms (1 -> -> -> 1000 `i `l `ul ]
+"31
+[; ;main.c: 31:   *((reg_type8_t)(0x0008)) = EEPROM_Read(Address++);
+[e = *U -> -> 8 `i `*Vuc ( _EEPROM_Read (1 ++ _Address -> -> 1 `i `ui ]
+"32
+[; ;main.c: 32:   SwDelay_ms(1000);
+[e ( _SwDelay_ms (1 -> -> -> 1000 `i `l `ul ]
+"33
+[; ;main.c: 33:   *((reg_type8_t)(0x0008)) = EEPROM_Read(Address);
+[e = *U -> -> 8 `i `*Vuc ( _EEPROM_Read (1 _Address ]
+"34
+[; ;main.c: 34:   SwDelay_ms(1000);
+[e ( _SwDelay_ms (1 -> -> -> 1000 `i `l `ul ]
+"41
+[; ;main.c: 41: while (1) {
+[e :U 7 ]
+{
+"42
+[; ;main.c: 42:   u16_data=ADC_READ();
+[e = _u16_data ( _ADC_READ ..  ]
+"45
+[; ;main.c: 45: }
+}
+[e :U 6 ]
+[e $U 7  ]
+[e :U 8 ]
+"47
+[; ;main.c: 47:     return 0;
+[e ) -> 0 `i ]
+[e $UE 5  ]
+"48
+[; ;main.c: 48: }
+[e :UE 5 ]
+}

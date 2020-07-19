@@ -1,0 +1,19 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"14 ./ADC_Config.h
+[; ;./ADC_Config.h: 14: typedef struct ADC_Cfg_s{
+[s S2 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S2 ADC_Cfg_s u8_Channel_Number u8_Prescaler clock_configuration u8_ten_bit_arrangment u8_polling_interrupt ]
+"4 ADC_Config.c
+[; ;ADC_Config.c: 4: ADC_Cfg_s ADC_Cnfiguration =
+[v _ADC_Cnfiguration `S2 ~T0 @X0 1 e ]
+[i _ADC_Cnfiguration
+:U ..
+:U ..
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 64 `i `uc
+-> -> 128 `i `uc
+-> -> 191 `i `uc
+..
+..
+]

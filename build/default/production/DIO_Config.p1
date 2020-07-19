@@ -1,0 +1,48 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"58 ./DIO_Config.h
+[; ;./DIO_Config.h: 58: typedef struct DIO_Cfg_s{
+[s S1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S1 DIO_Cfg_s port dir pin operation_mode ]
+"4 DIO_Config.c
+[; ;DIO_Config.c: 4: DIO_Cfg_s Dio_configutation_A = {0,0x01,0x00,0x06};
+[v _Dio_configutation_A `S1 ~T0 @X0 1 e ]
+[i _Dio_configutation_A
+:U ..
+:U ..
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 6 `i `uc
+..
+..
+]
+"5
+[; ;DIO_Config.c: 5: DIO_Cfg_s Dio_configutation_B ={
+[v _Dio_configutation_B `S1 ~T0 @X0 1 e ]
+[i _Dio_configutation_B
+:U ..
+:U ..
+-> -> 1 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+..
+..
+]
+"10
+[; ;DIO_Config.c: 10: DIO_Cfg_s Dio_configutation_C={2,0x08|0x10,0x00,};
+[v _Dio_configutation_C `S1 ~T0 @X0 1 e ]
+[i _Dio_configutation_C
+:U ..
+:U ..
+-> -> 2 `i `uc
+-> | -> 8 `i -> 16 `i `uc
+-> -> 0 `i `uc
+..
+..
+]
+"11
+[; ;DIO_Config.c: 11: DIO_Cfg_s Dio_configutation_D;
+[v _Dio_configutation_D `S1 ~T0 @X0 1 e ]
+"12
+[; ;DIO_Config.c: 12: DIO_Cfg_s Dio_configutation_E;
+[v _Dio_configutation_E `S1 ~T0 @X0 1 e ]

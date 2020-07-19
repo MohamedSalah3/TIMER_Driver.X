@@ -1,0 +1,66 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[v F42 `(v ~T0 @X0 0 tf ]
+"21 ./Timer_Config.h
+[; ;./Timer_Config.h: 21: {
+[s S1 `uc 1 `uc 1 `uc 1 `uc 1 `*F42 1 ]
+[n S1 Timer_cfg_s Timer_CH_NO Timer_Mode Timer_Polling_Or_Interrupt Timer_Prescaler Timer_Cbk_ptr ]
+"43 ./Timer.h
+[; ;./Timer.h: 43: extern void timer0_interrupt_ovfRoutine(void);
+[v _timer0_interrupt_ovfRoutine `(v ~T0 @X0 0 ef ]
+"44
+[; ;./Timer.h: 44: extern void timer1_interrupt_ovfRoutine(void);
+[v _timer1_interrupt_ovfRoutine `(v ~T0 @X0 0 ef ]
+"45
+[; ;./Timer.h: 45: extern void timer2_interrupt_ovfRoutine(void);
+[v _timer2_interrupt_ovfRoutine `(v ~T0 @X0 0 ef ]
+"3 Timer_Config.c
+[; ;Timer_Config.c: 3: Timer_cfg_s Timer_Configuration0 =
+[v _Timer_Configuration0 `S1 ~T0 @X0 1 e ]
+[i _Timer_Configuration0
+:U ..
+:U ..
+-> -> 0 `i `uc
+-> -> 199 `i `uc
+-> -> 160 `i `uc
+-> -> 0 `i `uc
+&U _timer0_interrupt_ovfRoutine
+..
+..
+]
+"10
+[; ;Timer_Config.c: 10: Timer_cfg_s Timer_Configuration1=
+[v _Timer_Configuration1 `S1 ~T0 @X0 1 e ]
+[i _Timer_Configuration1
+:U ..
+:U ..
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 48 `i `uc
+&U _timer1_interrupt_ovfRoutine
+..
+..
+]
+"18
+[; ;Timer_Config.c: 18: Timer_cfg_s Timer_Configuration2={ 2,
+[v _Timer_Configuration2 `S1 ~T0 @X0 1 e ]
+[i _Timer_Configuration2
+:U ..
+:U ..
+-> -> 2 `i `uc
+-> -> 0 `i `uc
+-> -> 2 `i `uc
+-> -> 1 `i `uc
+&U _timer2_interrupt_ovfRoutine
+..
+..
+]
+"23
+[; ;Timer_Config.c: 23: Timer_cfg_s Timer_Deinit_Configuration0;
+[v _Timer_Deinit_Configuration0 `S1 ~T0 @X0 1 e ]
+"24
+[; ;Timer_Config.c: 24: Timer_cfg_s Timer_Deinit_Configuration1;
+[v _Timer_Deinit_Configuration1 `S1 ~T0 @X0 1 e ]
+"25
+[; ;Timer_Config.c: 25: Timer_cfg_s Timer_Deinit_Configuration2;
+[v _Timer_Deinit_Configuration2 `S1 ~T0 @X0 1 e ]
